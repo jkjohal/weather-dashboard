@@ -29,5 +29,24 @@ function renderSearchHistory() {
     }
   };
 
+  function appendToHistory(search) {
+    // If there is no search term return the function
+    if (searchHistory.indexOf(search) !== -1) {
+      return;
+    }
+    searchHistory.push(search);
+  
+    localStorage.setItem('search-history', JSON.stringify(searchHistory));
+    renderSearchHistory();
+  };
 
+
+
+  function initSearchHistory() {
+    var storedHistory = localStorage.getItem('search-history');
+    if (storedHistory) {
+      searchHistory = JSON.parse(storedHistory);
+    }
+    renderSearchHistory();
+  };
   

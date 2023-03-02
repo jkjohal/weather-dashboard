@@ -205,3 +205,16 @@ function fetchWeather(location) {
         console.error(err);
       });
   };
+
+  function handleSearchFormSubmit(e) {
+    // Don't continue if there is nothing in the search form
+    if (!searchInput.value) {
+      return;
+    }
+  
+    e.preventDefault();
+    var search = searchInput.value.trim();
+    fetchCoords(search);
+    searchInput.value = '';
+  };
+  

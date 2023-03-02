@@ -133,3 +133,33 @@ function renderSearchHistory() {
   forecastContainer.append(col);
 };
 
+function renderForecast(dailyForecast) {
+    // Create unix timestamps for start and end of 5 day forecast
+    var startDt = dayjs().add(1, 'day').startOf('day').unix();
+    var endDt = dayjs().add(6, 'day').startOf('day').unix();
+  
+    var headingCol = document.createElement('div');
+    var heading = document.createElement('h4');
+  
+    headingCol.setAttribute('class', 'col-12');
+    heading.textContent = '5-Day Forecast:';
+    headingCol.append(heading);
+  
+    forecastContainer.innerHTML = '';
+    forecastContainer.append(headingCol);
+  
+    for (var i = 0; i < dailyForecast.length; i++) {
+  
+      // First filters through all of the data and returns only data that falls between one day after the current data and up to 5 days later.
+      if (dailyForecast[i].dt >= startDt && dailyForecast[i].dt < endDt) {
+  
+        // Then filters through the data and returns only data captured at noon for each day.
+        if (dailyForecast[i].dt_txt.slice(11, 13) == "12") {
+          renderForecastCard(dailyForecast[i]);
+        }
+      }
+    }
+  };
+
+  
+  

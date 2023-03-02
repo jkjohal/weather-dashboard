@@ -20,7 +20,7 @@ function renderSearchHistory() {
       var btn = document.createElement('button');
       btn.setAttribute('type', 'button');
       btn.setAttribute('aria-controls', 'today forecast');
-      btn.classList.add('history-btn', 'btn-history');
+      btn.classList.add('history-btn', 'btn-history', "waves-effect", "waves-light", "btn", "col", "s12", "blue", "lighten-4", "blue-text", "text-darken-4");
   
       // `data-search` allows access to city name when click handler is invoked
       btn.setAttribute('data-search', searchHistory[i]);
@@ -115,7 +115,7 @@ function renderSearchHistory() {
 
   col.setAttribute('class', 'col-md');
   col.classList.add('five-day-card');
-  card.setAttribute('class', 'card bg-primary h-100 text-white');
+  card.setAttribute('class', 'card small col s2');
   cardBody.setAttribute('class', 'card-body p-2');
   cardTitle.setAttribute('class', 'card-title');
   tempEl.setAttribute('class', 'card-text');

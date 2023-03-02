@@ -1,0 +1,16 @@
+* {
+    font-family: 'Hind Siliguri', sans-serif;
+};  
+
+.button {
+    font-family: 'Hind Siliguri', sans-serif;
+}
+
+.brand-logo {
+    padding:5px;
+}
+
+.card, #forecast {
+    margin: 10px;
+    padding-left: 5px;
+}

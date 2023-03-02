@@ -161,5 +161,27 @@ function renderForecast(dailyForecast) {
     }
   };
 
+
+  function renderItems(city, data) {
+  renderCurrentWeather(city, data.list[0], data.city.timezone);
+  renderForecast(data.list);
+};
+
+function fetchWeather(location) {
+    var { lat } = location;
+    var { lon } = location;
+    var city = location.name;
   
+    var apiUrl = `${weatherApiRootUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${weatherApiKey}`;
   
+    fetch(apiUrl)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        renderItems(city, data);
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  };

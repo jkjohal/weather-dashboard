@@ -147,11 +147,13 @@ function renderForecast(dailyForecast) {
     var startDt = dayjs().add(1, 'day').startOf('day').unix();
     var endDt = dayjs().add(6, 'day').startOf('day').unix();
   
-    var headingCol = document.createElement('div');
-    var heading = document.createElement('h4');
+    var headingCol = Object.assign(document.createElement('div'), {
+      class: "col-12"
+    });
+    var heading = Object.assign(document.createElement('h4'),{
+      textContent: '5-Day Forecast:'
+    });
   
-    headingCol.setAttribute('class', 'col-12');
-    heading.textContent = '5-Day Forecast:';
     headingCol.append(heading);
   
     forecastContainer.innerHTML = '';

@@ -21,24 +21,17 @@ function loadHistory() {
     searchHistoryContainer.innerHTML = '';
     
     let buttonAttributes = {
-      type: 'button',
-        //aria-controls: ['today', 'forecast'],
+        type: 'button',
         class: 'history-btn btn-history waves-effect waves-light btn col s12 blue lighten-4 blue-text text-darken-4',
-        //data-search :  
+        textContent: searchHistory[i],
     }
   
     for (var i = searchHistory.length - 1; i >= 0; i--) {
       var btn = Object.assign(document.createElement('button'), {buttonAttributes});
-        // type: 'button',
-        // 'aria-controls': ['today', 'forecast'],
-        // class: ['history-btn', 'btn-history', 'waves-effect', 'waves-light',"btn", "col", "s12", "blue", "lighten-4", "blue-text", "text-darken-4"],
-        // 'data-search' :  
-      //btn.setAttribute('type', 'button');
-      //btn.setAttribute('aria-controls', 'today forecast');
-      //btn.classList.add('history-btn', 'btn-history', "waves-effect", "waves-light", "btn", "col", "s12", "blue", "lighten-4", "blue-text", "text-darken-4");
+ 
+      btn.setAttribute('aria-controls', 'today forecast');
   
-      //btn.setAttribute('data-search', searchHistory[i]);
-      //btn.textContent = searchHistory[i];
+      btn.setAttribute('data-search', searchHistory[i]);
     
       searchHistoryContainer.append(btn);
     }

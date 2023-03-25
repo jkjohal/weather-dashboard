@@ -115,36 +115,39 @@ function loadHistory() {
   var windMph = forecast.wind.speed;
 
   // Create elements for a card
-  var col = document.createElement('div');
-  var card = document.createElement('div');
-  var cardBody = document.createElement('div');
-  var cardTitle = document.createElement('h5');
-  var weatherIcon = document.createElement('img');
-  var tempEl = document.createElement('p');
-  var windEl = document.createElement('p');
-  var humidityEl = document.createElement('p');
+  var col = Object.assign(document.createElement('div'),{
+    class: 'col-md five-day-card'
+  });
+  var card = Object.assign(document.createElement('div'),{
+    class: 'card small col s2'
+  });
+  var cardBody = Object.assign(document.createElement('div'),{
+    class: 'card-body p-2'
+  });
+  var cardTitle = Object.assign(document.createElement('h5'),{
+    class: 'card-title',
+    textContent: dayjs(forecast.dt_txt).format('M/D/YYYY')
+  });
+  var weatherIcon = Object.assign(document.createElement('img'),{
+    src: iconUrl,
+    alt: iconDescription
+  });
+  var tempEl = Object.assign(document.createElement('p'),{
+    class: 'card-text',
+    textContent: `Temp: ${tempF} °F`
+  });
+  var windEl = Object.assign(document.createElement('p'),{
+    class: 'card-text',
+    textContent: `Wind: ${windMph} MPH`
+  });
+  var humidityEl = Object.assign(document.createElement('p'),{
+    class: 'card-text',
+    textContent: `Humidity: ${humidity} %`
+  });
 
   col.append(card);
   card.append(cardBody);
   cardBody.append(cardTitle, weatherIcon, tempEl, windEl, humidityEl);
-
-  col.setAttribute('class', 'col-md');
-  col.classList.add('five-day-card');
-  card.setAttribute('class', 'card small col s2');
-  cardBody.setAttribute('class', 'card-body p-2');
-  cardTitle.setAttribute('class', 'card-title');
-  tempEl.setAttribute('class', 'card-text');
-  windEl.setAttribute('class', 'card-text');
-  humidityEl.setAttribute('class', 'card-text');
-
-  // Add content to elements
-  cardTitle.textContent = dayjs(forecast.dt_txt).format('M/D/YYYY');
-  weatherIcon.setAttribute('src', iconUrl);
-  weatherIcon.setAttribute('alt', iconDescription);
-  tempEl.textContent = `Temp: ${tempF} °F`;
-  windEl.textContent = `Wind: ${windMph} MPH`;
-  humidityEl.textContent = `Humidity: ${humidity} %`;
-
   forecastContainer.append(col);
 };
 

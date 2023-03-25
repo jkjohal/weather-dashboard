@@ -1,4 +1,6 @@
+//set up empty array for history
 var searchHistory = [];
+//set up openweather API and key
 var weatherApiRootUrl = 'https://api.openweathermap.org';
 var weatherApiKey = 'e7c18c7a2692c89d279349d1653aec75';
 
@@ -17,15 +19,27 @@ dayjs.extend(window.dayjs_plugin_timezone);
 //function to load search history
 function loadHistory() {
     searchHistoryContainer.innerHTML = '';
+    
+    let buttonAttributes = {
+      type: 'button',
+        //aria-controls: ['today', 'forecast'],
+        class: 'history-btn btn-history waves-effect waves-light btn col s12 blue lighten-4 blue-text text-darken-4',
+        //data-search :  
+    }
   
     for (var i = searchHistory.length - 1; i >= 0; i--) {
-      var btn = document.createElement('button');
-      btn.setAttribute('type', 'button');
-      btn.setAttribute('aria-controls', 'today forecast');
-      btn.classList.add('history-btn', 'btn-history', "waves-effect", "waves-light", "btn", "col", "s12", "blue", "lighten-4", "blue-text", "text-darken-4");
+      var btn = Object.assign(document.createElement('button'), {buttonAttributes});
+        // type: 'button',
+        // 'aria-controls': ['today', 'forecast'],
+        // class: ['history-btn', 'btn-history', 'waves-effect', 'waves-light',"btn", "col", "s12", "blue", "lighten-4", "blue-text", "text-darken-4"],
+        // 'data-search' :  
+      //btn.setAttribute('type', 'button');
+      //btn.setAttribute('aria-controls', 'today forecast');
+      //btn.classList.add('history-btn', 'btn-history', "waves-effect", "waves-light", "btn", "col", "s12", "blue", "lighten-4", "blue-text", "text-darken-4");
   
-      btn.setAttribute('data-search', searchHistory[i]);
-      btn.textContent = searchHistory[i];
+      //btn.setAttribute('data-search', searchHistory[i]);
+      //btn.textContent = searchHistory[i];
+    
       searchHistoryContainer.append(btn);
     }
   };

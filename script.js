@@ -68,31 +68,38 @@ function loadHistory() {
     var iconUrl = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
     var iconDescription = weather.weather[0].description || weather[0].main;
   
-    var card = document.createElement('div');
-    var cardBody = document.createElement('div');
-    var heading = document.createElement('h2');
-    var weatherIcon = document.createElement('img');
-    var tempEl = document.createElement('p');
-    var windEl = document.createElement('p');
-    var humidityEl = document.createElement('p');
+    var card = Object.assign(document.createElement('div'),{
+      class: 'card'
+    });
+    var cardBody = Object.assign(document.createElement('div'),{
+      class: 'card-body'
+    });
+    var heading = Object.assign(document.createElement('h2'),{
+      class: 'h3 card-title',
+      textContent: `${city} (${date})`
+    });
+    var weatherIcon = Object.assign(document.createElement('img'),{
+      src: iconUrl,
+      class: 'weather-img',
+      alt: iconDescription
+    });
+    var tempEl = Object.assign(document.createElement('p'),{
+      class: 'card-text',
+      textContent: `Temp: ${tempF}°F`
+    });
+    var windEl = Object.assign(document.createElement('p'),{
+      class: 'card-text',
+      textContent: `Wind: ${windMph} MPH`
+    });
+    var humidityEl = Object.assign(document.createElement('p'),{
+      class: 'card-text',
+      textContent: `Humidity: ${humidity} %`
+    });
   
-    card.setAttribute('class', 'card');
-    cardBody.setAttribute('class', 'card-body');
     card.append(cardBody);
   
-    heading.setAttribute('class', 'h3 card-title');
-    tempEl.setAttribute('class', 'card-text');
-    windEl.setAttribute('class', 'card-text');
-    humidityEl.setAttribute('class', 'card-text');
-  
-    heading.textContent = `${city} (${date})`;
-    weatherIcon.setAttribute('src', iconUrl);
-    weatherIcon.setAttribute('alt', iconDescription);
-    weatherIcon.setAttribute('class', 'weather-img');
     heading.append(weatherIcon);
-    tempEl.textContent = `Temp: ${tempF}°F`;
-    windEl.textContent = `Wind: ${windMph} MPH`;
-    humidityEl.textContent = `Humidity: ${humidity} %`;
+    
     cardBody.append(heading, tempEl, windEl, humidityEl);
   
     todayContainer.innerHTML = '';
